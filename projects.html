@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Paraclete Builders & Developers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Portfolio hero background animation */
+        .portfolio-hero-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url('assets/our-portfolio.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            animation: portfolioPan 18s infinite alternate ease-in-out;
+            transform-origin: center;
+        }
+
+        @keyframes portfolioPan {
+            0%   { transform: scale(1)    translateX(0)   translateY(0); }
+            33%  { transform: scale(1.07) translateX(-2%) translateY(-1%); }
+            66%  { transform: scale(1.05) translateX(2%)  translateY(1%); }
+            100% { transform: scale(1.1)  translateX(-1%) translateY(-2%); }
+        }
+
+        /* Animated text underline for section title */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-60px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .landmarks-title {
+            animation: slideInLeft 0.9s ease both;
+        }
+        .landmarks-subtitle {
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="assets/new-logo.png" alt="Paraclete Builders Logo">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="pools-main.html">Pools</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Portfolio Hero with animated background -->
+    <section class="hero" style="height: 55vh;">
+        <div class="portfolio-hero-bg"></div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1>Our Portfolio</h1>
+                <p>Showcasing our commitment to quality across South India.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <!-- Section 1: Architectural Landmarks -->
+            <div class="text-center" style="margin-top: 40px;">
+                <h2 class="section-title landmarks-title" data-aos="fade-right">Architectural Landmarks</h2>
+                <p class="subtitle landmarks-subtitle" data-aos="fade-up" data-aos-delay="200">Iconic structures that define our legacy of excellence.</p>
+            </div>
+            <div class="grid-3">
+                <!-- 1. Heritage Pool Villa - Coorg -->
+                <div class="project-card" data-aos="fade-right">
+                    <img src="assets/heritage-pool-villa-coorg.jpg" alt="Heritage Pool Villa">
+                    <div class="project-overlay">
+                        <p>Resort & Villa</p>
+                        <h3>Heritage Pool Villa</h3>
+                        <p style="font-size:0.78rem; color:rgba(255,255,255,0.8); margin-bottom:4px;"><i class="fas fa-building" style="margin-right:5px;"></i>Orange County Resorts & Hotels Ltd</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Coorg, Karnataka</p>
+                    </div>
+                </div>
+
+                <!-- 2. Pool Hut Courtyard - Kabini -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="assets/pool-hut-courtyard-kabini.jpg" alt="Pool Hut Courtyard">
+                    <div class="project-overlay">
+                        <p>Architecture & Landscape</p>
+                        <h3>Pool Hut Courtyard</h3>
+                        <p style="font-size:0.78rem; color:rgba(255,255,255,0.8); margin-bottom:4px;"><i class="fas fa-building" style="margin-right:5px;"></i>Orange County Resorts & Hotels Ltd</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Kabini, Karnataka</p>
+                    </div>
+                </div>
+
+                <!-- 3. Pool Hut Living Room - Kabini -->
+                <div class="project-card" data-aos="fade-left" data-aos-delay="200">
+                    <img src="assets/pool-hut-living-room-kabini.jpg" alt="Pool Hut Living Room">
+                    <div class="project-overlay">
+                        <p>Hospitality & Interior</p>
+                        <h3>Pool Hut Living Room</h3>
+                        <p style="font-size:0.78rem; color:rgba(255,255,255,0.8); margin-bottom:4px;"><i class="fas fa-building" style="margin-right:5px;"></i>Orange County Resorts & Hotels Ltd</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Kabini, Karnataka</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Section 3: Future Projects -->
+            <div class="text-center" style="margin-top: 80px;">
+                <h2 class="section-title" data-aos="fade-right" style="border-color: var(--primary);">Future Projects</h2>
+                <p class="subtitle" data-aos="fade-up" data-aos-delay="200">Our upcoming ventures and expansions across the region.</p>
+            </div>
+            <div class="grid-3">
+                <!-- 1. Evolve Back, Coorg -->
+                <div class="project-card" data-aos="fade-right">
+                    <img src="assets/coorg/coorg_1.jpg" alt="Evolve Back Coorg">
+                    <div class="project-overlay">
+                        <p>Resort & Villa</p>
+                        <h3>Evolve Back</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Coorg, Karnataka</p>
+                    </div>
+                </div>
+
+                <!-- 2. Evolve Back, Kabani -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="assets/kabini/kabini_1.jpg" alt="Evolve Back Kabani">
+                    <div class="project-overlay">
+                        <p>Resort & Leisure</p>
+                        <h3>Evolve Back</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Kabani, Karnataka</p>
+                    </div>
+                </div>
+
+                <!-- 3. Palmgrove Lake Resorts, Punnamada -->
+                <div class="project-card" data-aos="fade-left" data-aos-delay="200">
+                    <img src="assets/palmgrove_lake_resort.png" alt="Palmgrove Lake Resorts">
+                    <div class="project-overlay">
+                        <p>Hospitality & Resort</p>
+                        <h3>Palmgrove Lake Resorts</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Punnamada, Kerala</p>
+                    </div>
+                </div>
+
+                <!-- 4. The Sojurn, Kuttikanam -->
+                <div class="project-card" data-aos="fade-right" data-aos-delay="300">
+                    <img src="assets/the_sojurn_kuttikanam.png" alt="The Sojurn Kuttikanam">
+                    <div class="project-overlay">
+                        <p>Hospitality & Resort</p>
+                        <h3>The Sojurn</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Kuttikanam, Kerala</p>
+                    </div>
+                </div>
+
+                <!-- 5. LFIRST Rehablitation centre, Muriyad -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="assets/lfirst_rehab_centre.png" alt="LFIRST Rehablitation centre">
+                    <div class="project-overlay">
+                        <p>Institutional & Healthcare</p>
+                        <h3>LFIRST Rehablitation centre</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Muriyad, Kerala</p>
+                    </div>
+                </div>
+
+                <!-- 6. DP World Vallarpadam -->
+                <div class="project-card" data-aos="fade-right" data-aos-delay="500" onclick="window.location.href='project-dp-world.html';">
+                    <img src="assets/dp-world.png" alt="DP World Vallarpadam">
+                    <div class="project-overlay">
+                        <p>Industrial & Logistics</p>
+                        <h3>DP World Vallarpadam</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Kochi, Kerala</p>
+                    </div>
+                </div>
+
+                <!-- 7. German Dilligen Sisters School -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="600">
+                    <img src="assets/sisters-school.png" alt="German Dilligen Sisters School">
+                    <div class="project-overlay">
+                        <p>Educational & Institutional</p>
+                        <h3>German Dilligen Sisters School</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Kerala</p>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Paraclete Builders & Developers Pvt. Ltd. | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+</body>
+</html>
+
