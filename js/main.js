@@ -160,3 +160,33 @@ if (mottoEl) {
 
     mottoObserver.observe(mottoEl);
 }
+
+// ── Gallery Lightbox ────────────────────────────────────────────────────────
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeLightbox = document.querySelector('.close-lightbox');
+
+if (lightbox && lightboxImg) {
+    document.querySelectorAll('.project-card img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+            lightbox.classList.add('active');
+            lightboxImg.src = img.src;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    });
+
+    const hideLightbox = () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    };
+
+    closeLightbox.addEventListener('click', hideLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) hideLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) hideLightbox();
+    });
+}

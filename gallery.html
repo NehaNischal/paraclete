@@ -33,11 +33,12 @@
         </div>
     </header>
 
-    <section class="hero" style="height: 40vh; background-color: var(--secondary); display: flex; align-items: center; justify-content: center; text-align: center; color: white;">
-        <div class="container">
+    <section class="hero" style="height: 60vh;">
+        <div class="hero-bg" style="background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('assets/hospitality-bg.png');"></div>
+        <div class="container" style="text-align: center;">
             <div class="hero-content" data-aos="fade-up">
-                <h1>Visual Journey</h1>
-                <p>Capturing the essence of architecture through our projects.</p>
+                <h1 class="hero-title" style="font-size: 4.5rem; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));">Visual Journey</h1>
+                <p style="font-size: 1.3rem; color: white; margin-top: 15px; text-shadow: 1px 1px 5px rgba(0,0,0,0.8);">Capturing the essence of architecture through our projects.</p>
             </div>
         </div>
     </section>
@@ -61,9 +62,17 @@
                 <div class="project-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/dp-world-warehouse.png" alt="DP World Warehouse"></div>
                 <div class="project-card" data-aos="fade-up" data-aos-delay="200"><img src="assets/premium-pool-1.png" alt="Premium Pool"></div>
                 <div class="project-card" data-aos="fade-up"><img src="assets/premium-pool-2.png" alt="Pool Project"></div>
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/heritage-pool-villa-coorg.jpg" alt="Heritage Pool Villa Coorg"></div>
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200"><img src="assets/pool-hut-living-room-kabini.jpg" alt="Pool Hut Living Room Kabini"></div>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
 
     <footer>
         <div class="container text-center">
