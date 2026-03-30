@@ -1,9 +1,16 @@
-/**
- * Circular Gallery implementation using OGL
- * Adapted for Paraclete Builders
- */
+// Check if OGL is loaded
+if (typeof ogl === 'undefined') {
+  console.error('OGL library not found! Please check your internet connection or the CDN link in index.html.');
+  // Try to find the container and show an error message
+  window.addEventListener('load', () => {
+    const container = document.getElementById('circular-gallery');
+    if (container) {
+      container.innerHTML = '<div style="color: #666; text-align: center; padding: 50px;">Note: The interactive gallery requires a stable internet connection to load 3D components. Please refresh if images are not appearing.</div>';
+    }
+  });
+}
 
-const { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } = ogl;
+const { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } = ogl || {};
 
 function debounce(func, wait) {
   let timeout;
@@ -136,7 +143,11 @@ class Media {
   }
   createShader() {
     const texture = new Texture(this.gl, {
-      generateMipmaps: true
+      generateMipmaps: false,
+      minFilter: this.gl.LINEAR,
+      magFilter: this.gl.LINEAR,
+      wrapS: this.gl.CLAMP_TO_EDGE,
+      wrapT: this.gl.CLAMP_TO_EDGE
     });
     this.program = new Program(this.gl, {
       depthTest: false,
@@ -190,23 +201,28 @@ class Media {
           gl_FragColor = vec4(color.rgb, alpha);
         }
       `,
-      uniforms: {
-        tMap: { value: texture },
-        uPlaneSizes: { value: [0, 0] },
-        uImageSizes: { value: [0, 0] },
-        uSpeed: { value: 0 },
-        uTime: { value: 100 * Math.random() },
-        uBorderRadius: { value: this.borderRadius }
-      },
+        uniforms: {
+          tMap: { value: texture },
+          uPlaneSizes: { value: [0, 0] },
+          uImageSizes: { value: [1, 1] },
+          uSpeed: { value: 0 },
+          uTime: { value: 100 * Math.random() },
+          uBorderRadius: { value: this.borderRadius }
+        },
       transparent: true
     });
     const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = this.image;
+    img.crossOrigin = 'anonymous'; // Restore for potential CDN/Server usage
     img.onload = () => {
       texture.image = img;
       this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+      // Force a texture update in OGL
+      texture.needsUpdate = true;
     };
+    img.onerror = () => {
+      console.error('Failed to load gallery image:', this.image);
+    };
+    img.src = this.image;
   }
   createMesh() {
     this.plane = new Mesh(this.gl, {
@@ -312,15 +328,23 @@ class CircularGalleryApp {
     this.addEventListeners();
   }
   createRenderer() {
-    this.renderer = new Renderer({
-      alpha: true,
-      antialias: true,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
-    });
-    this.gl = this.renderer.gl;
-    this.gl.clearColor(0, 0, 0, 0);
-    this.gl.canvas.style.cursor = 'pointer';
-    this.container.appendChild(this.gl.canvas);
+    try {
+      // Clear any 'Loading...' or fallback text
+      this.container.innerHTML = '';
+      
+      this.renderer = new Renderer({
+        alpha: true,
+        antialias: true,
+        dpr: Math.min(window.devicePixelRatio || 1, 2)
+      });
+      this.gl = this.renderer.gl;
+      this.gl.clearColor(0, 0, 0, 0);
+      this.gl.canvas.style.cursor = 'pointer';
+      this.container.appendChild(this.gl.canvas);
+    } catch (e) {
+      console.error('WebGL Renderer Error:', e);
+      this.container.innerHTML = '<div style="color: #666; text-align: center; padding: 50px;">Interactive 3D view is not supported on this browser/device.</div>';
+    }
   }
   createCamera() {
     this.camera = new Camera(this.gl);
@@ -458,7 +482,7 @@ class CircularGalleryApp {
   }
   update() {
     if (!this.isDown) {
-      this.scroll.target -= 0.25; // Balanced auto-rotation (middle ground between 0.1 and 0.5)
+      this.scroll.target -= 0.1; // Reduced auto-rotation speed for a smoother experience
     }
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
