@@ -44,6 +44,27 @@
         .landmarks-subtitle {
             animation: fadeInUp 1s ease 0.3s both;
         }
+        .projects-flex-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .projects-flex-grid .project-card {
+            width: calc(33.333% - 27px);
+            min-width: 300px;
+        }
+        @media (max-width: 1024px) {
+            .projects-flex-grid .project-card {
+                width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 768px) {
+            .projects-flex-grid .project-card {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -88,7 +109,7 @@
                 <h2 class="section-title landmarks-title" data-aos="fade-right">Architectural Landmarks</h2>
                 <p class="subtitle landmarks-subtitle" data-aos="fade-up" data-aos-delay="200">Iconic structures that define our legacy of excellence.</p>
             </div>
-            <div class="grid-3">
+            <div class="projects-flex-grid">
                 <!-- 1. Heritage Pool Villa - Coorg -->
                 <div class="project-card" data-aos="fade-right">
                     <img src="assets/heritage-pool-villa-coorg.jpg" alt="Heritage Pool Villa" loading="lazy">
@@ -147,12 +168,12 @@
                     </div>
                 </div>
 
-                <!-- 7. The Sojurn, Kuttikanam -->
+                <!-- 7. Rosa Mystica, Kuttikanam -->
                 <div class="project-card" data-aos="fade-right" data-aos-delay="300">
-                    <img src="assets/the_sojurn_kuttikanam.png" alt="The Sojurn Kuttikanam" loading="lazy">
+                    <img src="assets/rosa_mystica.jpg" alt="Rosa Mystica Kuttikanam" loading="lazy">
                     <div class="project-overlay">
-                        <h3>The Sojurn</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> Kuttikanam, Kerala</p>
+                        <h3>Rosa Mystica</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> KUTTIKKANAM, KOTTAYAM</p>
                     </div>
                 </div>
 
@@ -186,7 +207,7 @@
         </div>
     </section>
 
-    <footer>
+        <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-links">
@@ -196,15 +217,18 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="projects.html">Projects</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="services.html">Civil Construction</a></li>
-                        <li><a href="services.html">Interior Design</a></li>
-                        <li><a href="services.html">Project Management</a></li>
-                        <li><a href="services.html">MEP Services</a></li>
+                        <li><a href="service-resorts.html">Luxury Resorts</a></li>
+                        <li><a href="service-apartments.html">Premium Apartments</a></li>
+                        <li><a href="service-residential.html">Residential Projects</a></li>
+                        <li><a href="service-commercial.html">Commercial Spaces</a></li>
+                        <li><a href="pools.html">Swimming Pools</a></li>
                     </ul>
                 </div>
                 <div class="footer-about">
