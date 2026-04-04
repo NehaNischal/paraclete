@@ -13,6 +13,16 @@
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.desktop-hide {
+    display: none !important;
+}
+
+@media (max-width: 991px) {
+    .desktop-hide {
+        display: block !important;
+    }
+}
+
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
@@ -456,7 +466,7 @@ header.scrolled .logo img {
 .card:hover p {
     color: rgba(255, 255, 255, 0.9);
     opacity: 1;
-    max-height: 200px;
+    max-height: 800px; /* Increased for mobile text visibility */
     margin-top: 15px;
 }
 
@@ -644,15 +654,26 @@ footer {
     transform: scale(1.25) rotate(10deg);
 }
 
-/* Mobile Optimizations */
+/* Mobile Performance Optimizations */
 @media (max-width: 768px) {
     .hero-bg, .hero-title, .project-card, .service-card, .testimonial-card {
-        will-change: transform, opacity;
+        will-change: auto !important; /* Allow browser to decide, overusing it can be bad */
     }
     
+    /* Disable cinematic zoom on mobile */
+    .hero-bg {
+        animation: heroReveal 1.2s ease-out forwards !important; /* Keep only the entrance animation */
+    }
+    
+    /* Disable floating animations to save CPU */
+    .testimonial-card, .floating {
+        animation: none !important;
+        transform: none !important;
+    }
+
     /* Simplified transitions for mobile to reduce CPU load */
     .btn, .nav-links a, .project-overlay, .card {
-        transition-duration: 0.25s !important;
+        transition-duration: 0.15s !important;
     }
     
     /* Disable complex hover effects on touch devices */
@@ -661,7 +682,7 @@ footer {
     }
     
     .card:hover {
-        transform: translateY(-5px) !important;
+        transform: none !important; /* Don't lift cards on mobile */
     }
 }
 
@@ -1699,7 +1720,8 @@ footer {
   border: 1px solid #eee;
   display: flex;
   flex-direction: column;
-  cursor: default;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .service-card:hover {
@@ -1745,25 +1767,8 @@ footer {
   flex: 1;
 }
 
-.card-btn {
-  margin-top: auto;
-  padding: 12px 20px;
-  border: none;
-  background: var(--primary);
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  font-weight: 600;
-  width: 100%;
-  font-size: 0.95rem;
-}
-
-.service-card:hover .card-btn {
-  opacity: 1;
-  transform: translateY(0);
+.service-card:hover h3 {
+  color: var(--primary);
 }
 
 
@@ -2019,17 +2024,10 @@ footer {
         display: block !important;
         width: 100% !important;
         overflow: hidden !important;
-    }
-
-    /* 2-Column Grid for Galleries on Phone */
-    .grid-3, .projects-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
-        width: 100% !important;
+        box-sizing: border-box !important;
     }
     
-    .grid-4 > *, .grid-2 > *, .service-cards-grid > *, 
+    .grid-4 > *, .grid-3 > *, .grid-2 > *, .projects-grid > *, .service-cards-grid > *, 
     .vision-mission-grid > *, .why-grid > *, .about-grid > *, 
     .testimonial-grid > *, .project-detail-grid > *, 
     .highlights-grid > *, .project-images-grid > * {
@@ -2038,6 +2036,28 @@ footer {
         display: block !important;
         float: none !important;
         clear: both !important;
+    }
+
+    /* Standard cards matching About Us style */
+    .card {
+        aspect-ratio: auto !important;
+        display: block !important;
+        padding: 30px !important;
+        text-align: center !important;
+    }
+    
+    .card p {
+        opacity: 0 !important;
+        max-height: 0 !important;
+        margin-top: 0 !important;
+        transition: all 0.4s ease !important;
+    }
+    
+    .card:hover p, .card:active p {
+        opacity: 1 !important;
+        max-height: 150px !important; /* Limit height to keep square look as much as possible */
+        margin-top: 10px !important;
+        overflow-y: auto !important; /* Allow scroll if text is too long */
     }
 
     .project-card {

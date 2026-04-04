@@ -173,7 +173,7 @@
                         <div class="card-info">
                             <p>Luxury resorts built with precision, blending modern design and natural harmony.</p>
                         </div>
-                        <button class="card-btn">View Details</button>
+                        
                     </div>
                 </a>
                 <a href="service-apartments.html" class="service-card" data-aos="fade-down" data-aos-delay="200">
@@ -185,7 +185,7 @@
                         <div class="card-info">
                             <p>Modern apartments reflecting smart design, comfort, and long-lasting quality.</p>
                         </div>
-                        <button class="card-btn">View Details</button>
+                        
                     </div>
                 </a>
                 <a href="service-residential.html" class="service-card" data-aos="fade-down-left" data-aos-delay="300">
@@ -197,7 +197,7 @@
                         <div class="card-info">
                             <p>Quality homes designed to meet modern lifestyles with safety and sophistication.</p>
                         </div>
-                        <button class="card-btn">View Details</button>
+                        
                     </div>
                 </a>
                 <a href="service-hospitality.html" class="service-card" data-aos="flip-left" data-aos-delay="400">
@@ -209,7 +209,7 @@
                         <div class="card-info">
                             <p>World-class hospitality projects built for excellence and sustainability.</p>
                         </div>
-                        <button class="card-btn">View Details</button>
+                        
                     </div>
                 </a>
                 <a href="service-commercial.html" class="service-card" data-aos="flip-right" data-aos-delay="100">
@@ -221,7 +221,7 @@
                         <div class="card-info">
                             <p>Smart, functional spaces designed to enhance business growth and appeal.</p>
                         </div>
-                        <button class="card-btn">View Details</button>
+                        
                     </div>
                 </a>
                 <a href="service-villas.html" class="service-card" data-aos="zoom-in-up" data-aos-delay="200">
@@ -233,7 +233,7 @@
                         <div class="card-info">
                             <p>Elegant villas crafted with attention to detail, comfort, and timeless style.</p>
                         </div>
-                        <button class="card-btn">View Details</button>
+                        
                     </div>
                 </a>
                 <a href="service-educational.html" class="service-card" data-aos="zoom-in-down" data-aos-delay="300">
@@ -245,7 +245,7 @@
                         <div class="card-info">
                             <p>Innovative, functional spaces that inspire learning and growth.</p>
                         </div>
-                        <button class="card-btn">View Details</button>
+                        
                     </div>
                 </a>
                 <a href="pools.html" class="service-card" data-aos="fade-up" data-aos-delay="400">
@@ -257,7 +257,7 @@
                         <div class="card-info">
                             <p>Premium swimming pools tailored for luxury resorts and residences.</p>
                         </div>
-                        <button class="card-btn">View Details</button>
+                        
                     </div>
                 </a>
             </div>
@@ -294,6 +294,13 @@
                     <div class="project-overlay">
                         <h3>Palmgrove Lake Resorts</h3>
                         <p><i class="fas fa-map-marker-alt"></i> Punnamada, Kerala</p>
+                    </div>
+                </div>
+                <div class="project-card desktop-hide" data-aos="zoom-in-up" data-aos-delay="600">
+                    <img src="assets/kabini/kabini_1.jpg" alt="Evolve Back Kabini" loading="lazy">
+                    <div class="project-overlay">
+                        <h3>Evolve Back Kabini</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Kabini, Karnataka</p>
                     </div>
                 </div>
             </div>
@@ -451,9 +458,14 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main.js"></script>
     <script>
-        // Optimize AOS and lazy loading
+        // Optimize AOS for performance
         document.addEventListener('DOMContentLoaded', () => {
-            AOS.init({ duration: 800, once: true });
+            AOS.init({ 
+                duration: 600, 
+                once: true,
+                disable: 'mobile', // Disable AOS on mobile devices
+                offset: 50 // Reduce detection distance
+            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/ogl/dist/ogl.umd.js"></script>

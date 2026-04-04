@@ -352,11 +352,13 @@ class CircularGalleryApp {
       this.renderer = new Renderer({
         alpha: true,
         antialias: true,
-        dpr: Math.min(window.devicePixelRatio || 1, 2)
+        dpr: Math.min(window.devicePixelRatio || 1, 1.5), // Lower DPR on mobile for performance
+        powerPreference: 'high-performance'
       });
       this.gl = this.renderer.gl;
       this.gl.clearColor(0, 0, 0, 0);
       this.gl.canvas.style.cursor = 'pointer';
+      this.gl.canvas.style.willChange = 'transform'; // Force layer
       this.container.appendChild(this.gl.canvas);
     } catch (e) {
       console.error('WebGL Renderer Error:', e);
@@ -374,8 +376,8 @@ class CircularGalleryApp {
   createGeometry() {
     const isMobile = window.innerWidth <= 768;
     this.planeGeometry = new Plane(this.gl, {
-      heightSegments: isMobile ? 10 : 50,
-      widthSegments: isMobile ? 20 : 100
+      heightSegments: isMobile ? 8 : 40,
+      widthSegments: isMobile ? 12 : 80
     });
   }
   createMedias(items, bend = 1, textColor, borderRadius, font) {
@@ -503,11 +505,23 @@ class CircularGalleryApp {
     if (!this.isDown && !isMobile) {
       this.scroll.target -= 0.1; // Auto-rotation only on desktop
     }
+    
+    // Stop early if movement is negligible and not being interactively scrolled
+    const diff = this.scroll.target - this.scroll.current;
+    if (Math.abs(diff) < 0.001 && !this.isDown && isMobile) {
+      this.scroll.current = this.scroll.target;
+      this.renderer.render({ scene: this.scene, camera: this.camera });
+      this.raf = window.requestAnimationFrame(this.update.bind(this));
+      return; // Skip media updates to save CPU if no change is happening on mobile
+    }
+
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
+    
     if (this.medias) {
       this.medias.forEach(media => media.update(this.scroll, direction));
     }
+    
     this.renderer.render({ scene: this.scene, camera: this.camera });
     this.scroll.last = this.scroll.current;
     this.raf = window.requestAnimationFrame(this.update.bind(this));
@@ -518,16 +532,16 @@ class CircularGalleryApp {
     this.boundOnTouchDown = this.onTouchDown.bind(this);
     this.boundOnTouchMove = this.onTouchMove.bind(this);
     this.boundOnTouchUp = this.onTouchUp.bind(this);
-    window.addEventListener('resize', this.boundOnResize);
-    window.addEventListener('mousewheel', this.boundOnWheel);
-    window.addEventListener('wheel', this.boundOnWheel);
+    window.addEventListener('resize', this.boundOnResize, { passive: true });
+    window.addEventListener('mousewheel', this.boundOnWheel, { passive: true });
+    window.addEventListener('wheel', this.boundOnWheel, { passive: true });
     if (this.gl && this.gl.canvas) {
       this.gl.canvas.addEventListener('mousedown', this.boundOnTouchDown);
       this.gl.canvas.addEventListener('mousemove', this.boundOnTouchMove);
       this.gl.canvas.addEventListener('mouseup', this.boundOnTouchUp);
-      this.gl.canvas.addEventListener('touchstart', this.boundOnTouchDown);
-      this.gl.canvas.addEventListener('touchmove', this.boundOnTouchMove);
-      this.gl.canvas.addEventListener('touchend', this.boundOnTouchUp);
+      this.gl.canvas.addEventListener('touchstart', this.boundOnTouchDown, { passive: true });
+      this.gl.canvas.addEventListener('touchmove', this.boundOnTouchMove, { passive: true });
+      this.gl.canvas.addEventListener('touchend', this.boundOnTouchUp, { passive: true });
     }
   }
   destroy() {

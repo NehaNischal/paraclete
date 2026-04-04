@@ -1,10 +1,17 @@
 // Header scroll effect
+let scrolling = false;
 window.addEventListener('scroll', function() {
-    const header = document.getElementById('header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
+    if (!scrolling) {
+        window.requestAnimationFrame(() => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            scrolling = false;
+        });
+        scrolling = true;
     }
 });
 
@@ -47,19 +54,19 @@ const counterObserver = new IntersectionObserver((entries) => {
             const target = parseFloat(targetAttr);
             const isFloat = targetAttr.includes('.');
             
-            const updateCount = () => {
+            const updateCount = (timestamp) => {
                 const count = parseFloat(counter.innerText);
-                const inc = Math.max(isFloat ? 0.1 : 1, target / speed);
+                const inc = Math.max(isFloat ? 0.05 : 0.5, target / speed);
 
                 if (count < target) {
                     const nextValue = count + inc;
                     counter.innerText = isFloat ? nextValue.toFixed(1) : Math.ceil(nextValue);
-                    setTimeout(updateCount, 15);
+                    requestAnimationFrame(updateCount);
                 } else {
                     counter.innerText = isFloat ? target.toFixed(1) : target;
                 }
             };
-            updateCount();
+            requestAnimationFrame(updateCount);
             counterObserver.unobserve(counter);
         }
     });
@@ -235,3 +242,14 @@ document.querySelectorAll('.project-card').forEach(card => {
         }
     });
 });
+
+// ── Global AOS Initialization (Performance Optimized) ────────────────────────
+if (typeof AOS !== 'undefined') {
+    AOS.init({
+        duration: 600,
+        once: true,
+        disable: 'mobile', // Disable on mobile for performance
+        offset: 50
+    });
+}
+
