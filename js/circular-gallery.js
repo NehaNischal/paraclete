@@ -324,8 +324,25 @@ class CircularGalleryApp {
     this.onResize();
     this.createGeometry();
     this.createMedias(items, bend, textColor, borderRadius, font);
-    this.update();
+    this.setupIntersectionObserver();
     this.addEventListeners();
+  }
+  
+  setupIntersectionObserver() {
+    const options = { threshold: 0.1 };
+    this.isVisible = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        this.isVisible = entry.isIntersecting;
+        if (this.isVisible && !this.raf) {
+          this.update();
+        } else if (!this.isVisible && this.raf) {
+          window.cancelAnimationFrame(this.raf);
+          this.raf = null;
+        }
+      });
+    }, options);
+    observer.observe(this.container);
   }
   createRenderer() {
     try {
@@ -355,9 +372,10 @@ class CircularGalleryApp {
     this.scene = new Transform();
   }
   createGeometry() {
+    const isMobile = window.innerWidth <= 768;
     this.planeGeometry = new Plane(this.gl, {
-      heightSegments: 50,
-      widthSegments: 100
+      heightSegments: isMobile ? 10 : 50,
+      widthSegments: isMobile ? 20 : 100
     });
   }
   createMedias(items, bend = 1, textColor, borderRadius, font) {
@@ -481,8 +499,9 @@ class CircularGalleryApp {
     }
   }
   update() {
-    if (!this.isDown) {
-      this.scroll.target -= 0.1; // Reduced auto-rotation speed for a smoother experience
+    const isMobile = window.innerWidth <= 768;
+    if (!this.isDown && !isMobile) {
+      this.scroll.target -= 0.1; // Auto-rotation only on desktop
     }
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';

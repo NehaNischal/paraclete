@@ -206,3 +206,32 @@ document.querySelectorAll('.read-more-btn').forEach(btn => {
         }
     });
 });
+
+// ── Touch interaction for Project Cards ──────────────────────────────────────
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+        // Only run this on mobile/tablet viewports
+        if (window.innerWidth <= 1024) {
+            const wasActive = this.classList.contains('touch-active');
+            
+            if (!wasActive) {
+                // If wasn't active, show text and PREVENT lightbox on FIRST tap
+                document.querySelectorAll('.project-card').forEach(c => c.classList.remove('touch-active'));
+                this.classList.add('touch-active');
+                e.preventDefault();
+                e.stopPropagation();
+            } else {
+                // If already active, the click on the IMG will naturally 
+                // trigger the lightbox listener in the next script block.
+                // But we don't want to CLOSE it immediately unless we click outside.
+            }
+        }
+    });
+
+    // Close overlays when tapping outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.project-card')) {
+            document.querySelectorAll('.project-card').forEach(c => c.classList.remove('touch-active'));
+        }
+    });
+});

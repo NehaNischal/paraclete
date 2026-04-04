@@ -644,17 +644,31 @@ footer {
     transform: scale(1.25) rotate(10deg);
 }
 
+/* Mobile Optimizations */
 @media (max-width: 768px) {
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        padding-bottom: 60px;
+    .hero-bg, .hero-title, .project-card, .service-card, .testimonial-card {
+        will-change: transform, opacity;
+    }
+    
+    /* Simplified transitions for mobile to reduce CPU load */
+    .btn, .nav-links a, .project-overlay, .card {
+        transition-duration: 0.25s !important;
+    }
+    
+    /* Disable complex hover effects on touch devices */
+    .project-card:hover img {
+        transform: none !important;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px) !important;
     }
 }
 
 /* Animations */
 [data-aos] {
-    transition-duration: 1000ms !important;
+    transition-duration: 800ms !important;
+    will-change: transform, opacity;
 }
 
 @media (max-width: 992px) {
@@ -1856,6 +1870,7 @@ footer {
 
 .project-card:hover .project-overlay {
     transform: translateY(0);
+    opacity: 1;
 }
 
 .project-overlay h3 {
@@ -1869,6 +1884,12 @@ footer {
     font-size: 0.85rem;
     margin: 0;
     color: rgba(255,255,255,0.9);
+}
+
+.project-client {
+    font-size: 0.78rem !important;
+    color: rgba(255,255,255,0.7) !important;
+    margin: 4px 0 !important;
 }
 
 /* ==========================================================================
@@ -2066,5 +2087,19 @@ footer {
     }
     .aos-animate {
         pointer-events: auto;
+    }
+
+    /* Show Project Overlays when touched on mobile */
+    .project-card.touch-active .project-overlay {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+    }
+    
+    .project-overlay h3 {
+        font-size: 1rem !important;
+        line-height: 1.2;
+    }
+    .project-overlay p {
+        font-size: 0.75rem !important;
     }
 }
