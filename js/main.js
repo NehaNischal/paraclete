@@ -190,3 +190,19 @@ if (lightbox && lightboxImg) {
         if (e.key === 'Escape' && lightbox.classList.contains('active')) hideLightbox();
     });
 }
+
+// ── Testimonial Read More Toggle ─────────────────────────────────────────────
+document.querySelectorAll('.read-more-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const card = btn.closest('.testimonial-card');
+        card.classList.toggle('expanded');
+        
+        if (card.classList.contains('expanded')) {
+            btn.textContent = 'Read Less';
+        } else {
+            btn.textContent = 'Read More';
+            // Scroll back to the top of the card if it was expanded
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    });
+});

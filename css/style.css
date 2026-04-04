@@ -1,6 +1,7 @@
 :root {
     --primary: #8B0000; /* Deep Red */
     --primary-dark: #630000;
+    --primary-gradient: linear-gradient(135deg, #3d0000 0%, #8B0000 50%, #520000 100%);
     --secondary: #121212; /* Subtle Black */
     --accent: #E5E5E5;
     --text-main: #2D2D2D;
@@ -608,11 +609,47 @@ footer {
 }
 
 .footer-bottom {
-    border-top: 1px solid #222;
-    padding-top: 40px;
-    text-align: center;
-    color: #666;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.9rem;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.developer-credit a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.developer-credit i {
+    font-size: 1.5rem;
+    color: #d1a052; /* Premium Gold from screenshot */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.developer-credit a:hover {
+    color: white;
+}
+
+.developer-credit a:hover i {
+    transform: scale(1.25) rotate(10deg);
+}
+
+@media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 60px;
+    }
 }
 
 /* Animations */
@@ -817,13 +854,7 @@ footer {
         font-size: 1.4rem;
     }
 
-    /* Motto box — reduce padding */
-    .motto-box {
-        padding: 36px 24px;
-    }
-    .motto-box h2 {
-        font-size: 1.15rem;
-    }
+
 
     /* Client grid — 2 cols on mobile */
     .client-grid {
@@ -884,13 +915,7 @@ footer {
     .vm-card h3 {
         font-size: 1.2rem;
     }
-    .motto-box {
-        padding: 28px 16px;
-    }
-    .motto-box h2 {
-        font-size: 1.1rem;
-        min-height: auto !important;
-    }
+
     .client-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
@@ -1114,6 +1139,7 @@ footer {
     position: relative;
     border: 1px solid rgba(0,0,0,0.05);
     background-image: linear-gradient(135deg, var(--white) 0%, #fff9f9 100%);
+    transition: var(--transition);
 }
 
 .motto-box i {
@@ -1133,6 +1159,24 @@ footer {
     margin-bottom: 30px;
     position: relative;
     z-index: 1;
+    transition: var(--transition);
+}
+
+@media (max-width: 991px) {
+    .motto-box { padding: 50px 30px; }
+    .motto-box h2 { font-size: 1.6rem; }
+}
+
+@media (max-width: 768px) {
+    .motto-box { padding: 40px 20px; }
+    .motto-box h2 { font-size: 1.3rem; margin-bottom: 20px; }
+    .motto-box i { font-size: 2.5rem; margin-bottom: 20px; }
+}
+
+@media (max-width: 480px) {
+    .motto-box { padding: 30px 15px; }
+    .motto-box h2 { font-size: 1.05rem; line-height: 1.4; margin-bottom: 15px; }
+    .motto-box i { font-size: 1.8rem; margin-bottom: 15px; }
 }
 
 .motto-label {
@@ -1512,15 +1556,51 @@ footer {
     z-index: 2;
 }
 
-.testimonial-card p {
+.testimonial-card .testimonial-text {
     font-size: 1.1rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 35px;
+    margin-bottom: 25px;
     font-style: italic;
     position: relative;
     z-index: 2;
     flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.testimonial-card.expanded .testimonial-text {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    margin-bottom: 35px;
+}
+
+.read-more-btn {
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: inline-block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 5;
+    transition: var(--transition);
+    border-bottom: 2px solid transparent;
+}
+
+.read-more-btn:hover {
+    color: white;
+    border-bottom-color: var(--primary);
+}
+
+.testimonial-card.expanded .read-more-btn {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .testimonial-author {
