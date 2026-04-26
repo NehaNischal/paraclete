@@ -253,3 +253,25 @@ if (typeof AOS !== 'undefined') {
     });
 }
 
+// ── Contact Form Handling ────────────────────────────────────────────────────
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        
+        // Simulate network request
+        setTimeout(() => {
+            alert('Thank you for your message! Our team will get back to you shortly.');
+            contactForm.reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }, 1500);
+    });
+}

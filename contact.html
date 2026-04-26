@@ -12,51 +12,114 @@
     <meta property="og:title" content="Contact Paraclete Builders | Get a Quote">
     <meta property="og:description" content="Reach out to us for your next construction project in South India.">
     <meta property="og:image" content="https://paracletebuilders.com/assets/new-logo.png">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
+        .contact-section {
+            padding: 100px 0;
+            background: #fff;
+        }
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
             gap: 60px;
         }
-        .info-card {
+        .info-column {
             background: var(--bg-light);
-            padding: 40px;
-            border-radius: 10px;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+        .info-header {
+            margin-bottom: 40px;
+        }
+        .info-header h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
         }
         .info-item {
             display: flex;
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
         .info-item i {
             font-size: 1.5rem;
             color: var(--primary);
+            width: 40px;
+            height: 40px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: var(--shadow-sm);
         }
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
+        .info-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--secondary);
         }
-        .contact-form textarea {
-            height: 150px;
+        .info-item p {
+            color: var(--text-muted);
+            line-height: 1.6;
         }
-        #map {
-            width: 100%;
-            height: 400px;
+        
+        .form-column {
+            padding: 20px;
+        }
+        .contact-form {
+            display: grid;
+            gap: 25px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group textarea {
+            padding: 15px 20px;
+            border: 1px solid #e1e1e1;
             border-radius: 10px;
-            margin-top: 60px;
-            background: #eee;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: #fdfdfd;
         }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.1);
+        }
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        #map-container {
+            margin-top: 100px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 450px;
+        }
+        
         @media (max-width: 992px) {
             .contact-container {
                 grid-template-columns: 1fr;
+            }
+            .info-column {
+                padding: 30px;
             }
         }
     </style>
@@ -76,7 +139,7 @@
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
                     <li><a href="pools.html">Pools</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
@@ -85,18 +148,119 @@
         </div>
     </header>
 
-    <section class="hero" style="height: 40vh; background: var(--primary-gradient);">
+    <section class="hero" style="height: 45vh; background: var(--primary-gradient);">
         <div class="container">
-            <div class="hero-content" data-aos="fade-up">
-                <h1>Contact Paraclete Builders</h1>
-                
-                            </div>
+            <div class="hero-content" data-aos="fade-up" style="text-align: center;">
+                <h1 class="hero-title" style="font-size: 4rem;">Get In Touch</h1>
+                <p style="color: white; font-size: 1.2rem; margin-top: 20px;">We're here to help you build your vision. Let's start a conversation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="info-column" data-aos="fade-right">
+                    <div class="info-header">
+                        <p>Have a project in mind? Our team is ready to assist you with expertise and care.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Our Office</h4>
+                            <p>Second Floor, Kaloor - Kadavanthara Rd,<br>opp. Gokul Oottupura, Kadavanthra,<br>Kochi, Kerala 682020</p>
                         </div>
-                        <div class="info-item">
-                            <i class="fab fa-instagram" style="color: #E1306C;"></i>
-                            <div>
-                                <h4>Instagram</h4>
-                                
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p><a href="tel:+919562567374" style="color: inherit; text-decoration: none;">+91 95625 67374</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p><a href="https://wa.me/919961512321" target="_blank" style="color: inherit; text-decoration: none;">+91 99615 12321</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <h4>Follow Us</h4>
+                            <p><a href="https://www.instagram.com/paraclete_builders/" target="_blank" style="color: inherit; text-decoration: none;">@paraclete_builders</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-column" data-aos="fade-left">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 18px;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="map-container" data-aos="zoom-in">
+                <!-- Replace with actual Google Maps Embed if needed -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.577052411842!2d76.29914749999999!3d9.969103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08737dfed6fd37%3A0x9cf2e4c406291ec2!2sParaclete%20Builders%20%26%20Developers%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1777217804684!5m2!1sen!2sin" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-links">
+                    <h4>Main Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="service-resorts.html">Luxury Resorts</a></li>
+                        <li><a href="service-apartments.html">Premium Apartments</a></li>
+                        <li><a href="service-residential.html">Residential Projects</a></li>
+                        <li><a href="service-commercial.html">Commercial Spaces</a></li>
+                        <li><a href="pools.html">Swimming Pools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-about">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 10px;"></i> Second Floor, Kaloor - Kadavanthara Rd, opp. Gokul Oottupura, Kadavanthra, Kochi, Ernakulam, Kerala 682020</p>
+                    <p><i class="fas fa-phone-alt" style="color: var(--primary); margin-right: 10px;"></i> <a href="tel:+919562567374" style="color: inherit; text-decoration: none;">095625 67374</a></p>
+                    <p><i class="fab fa-whatsapp" style="color: #25D366; margin-right: 10px;"></i> <a href="https://wa.me/919961512321" target="_blank" style="color: inherit; text-decoration: none;">99615 12321</a></p>
+
                 </div>
             </div>
             <div class="footer-bottom">
@@ -112,8 +276,11 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/main.js"></script>
-    <script>AOS.init({ duration: 1000, once: true });</script>
+    <script>
+        AOS.init({ 
+            duration: 1000, 
+            once: true 
+        });
+    </script>
 </body>
 </html>
-
-
