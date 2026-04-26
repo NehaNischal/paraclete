@@ -494,9 +494,10 @@ header.scrolled .logo img {
 }
 
 .project-card img {
-    width: 100%;
-    height: 100%;
+    width: 125% !important; /* Aggressive crop to push text out */
+    height: 125% !important;
     object-fit: cover;
+    object-position: top;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1794,7 +1795,16 @@ footer {
     transition: opacity 0.3s ease;
 }
 .lightbox.active { display: flex; opacity: 1; }
-.lightbox-content { max-width: 90%; max-height: 80%; border-radius: 8px; box-shadow: 0 0 40px rgba(0,0,0,0.6); }
+.lightbox-content { 
+    max-width: 95vw; 
+    max-height: 85vh; 
+    width: 120%; /* Aggressive crop for lightbox */
+    height: 120%;
+    object-fit: cover; 
+    object-position: top; 
+    border-radius: 8px; 
+    box-shadow: 0 0 40px rgba(0,0,0,0.6); 
+}
 .close-lightbox { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
 
 /* ==========================================================================
@@ -1811,9 +1821,10 @@ footer {
 }
 
 .project-card img {
-    width: 100%;
-    height: 100%;
+    width: 125% !important; /* Aggressive crop to push text out */
+    height: 125% !important;
     object-fit: cover;
+    object-position: top;
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
 }
 
