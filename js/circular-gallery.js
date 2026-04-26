@@ -352,7 +352,7 @@ class CircularGalleryApp {
       this.renderer = new Renderer({
         alpha: true,
         antialias: true,
-        dpr: Math.min(window.devicePixelRatio || 1, 1.5), // Lower DPR on mobile for performance
+        dpr: window.innerWidth <= 768 ? 1 : Math.min(window.devicePixelRatio || 1, 1.5),
         powerPreference: 'high-performance'
       });
       this.gl = this.renderer.gl;
@@ -376,8 +376,8 @@ class CircularGalleryApp {
   createGeometry() {
     const isMobile = window.innerWidth <= 768;
     this.planeGeometry = new Plane(this.gl, {
-      heightSegments: isMobile ? 8 : 40,
-      widthSegments: isMobile ? 12 : 80
+      heightSegments: isMobile ? 4 : 20,
+      widthSegments: isMobile ? 6 : 40
     });
   }
   createMedias(items, bend = 1, textColor, borderRadius, font) {
