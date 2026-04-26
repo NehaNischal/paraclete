@@ -246,10 +246,10 @@ document.querySelectorAll('.project-card').forEach(card => {
 // ── Global AOS Initialization (Performance Optimized) ────────────────────────
 if (typeof AOS !== 'undefined') {
     AOS.init({
-        duration: 600,
+        duration: 400,
         once: true,
-        disable: 'mobile', // Disable on mobile for performance
-        offset: 50
+        disable: 'mobile',
+        offset: 30
     });
 }
 
