@@ -253,25 +253,35 @@ if (typeof AOS !== 'undefined') {
     });
 }
 
-// ── Contact Form Handling ────────────────────────────────────────────────────
-const contactForm = document.querySelector('.contact-form');
+// ── Contact Form Handling (EmailJS Integration) ──────────────────────────────
+const contactForm = document.getElementById('contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
-        
+
         // Show loading state
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
-        
-        // Simulate network request
-        setTimeout(() => {
-            alert('Thank you for your message! Our team will get back to you shortly.');
-            contactForm.reset();
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        }, 1500);
+
+        // These IDs must match your EmailJS Dashboard
+        const serviceID = 'YOUR_SERVICE_ID';
+        const templateID = 'YOUR_TEMPLATE_ID';
+
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                alert('Thank you for your message! Our team will get back to you shortly.');
+                contactForm.reset();
+            }, (err) => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                alert('Oops! Something went wrong. Please try again or contact us via WhatsApp.\n\nError: ' + JSON.stringify(err));
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
     });
 }
